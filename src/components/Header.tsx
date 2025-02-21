@@ -19,8 +19,7 @@ const navItems = [
     title: "IN THE NEWS",
     items: [
       { title: "Recent News", href: "/news/recent" },
-      { title: "Media Coverage", href: "/news/media" },
-      // { title: "Press Releases", href: "/news/press" },
+      { title: "Media Coverage", href: "/news/media" }
     ],
   },
   {
