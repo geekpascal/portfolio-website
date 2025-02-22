@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import PageLayout from "@/app/components/PageLayout"
-import Pagination from "@/app/components/Pagination"
-import { CalendarIcon } from "lucide-react"
-import { useParams } from "next/navigation"
+import PageLayout from "@/app/components/PageLayout";
+import Pagination from "@/app/components/Pagination";
+import { CalendarIcon } from "lucide-react";
+import { useParams } from "next/navigation";
 
 const recentNews = [
   {
@@ -58,20 +58,20 @@ const recentNews = [
   }
 ];
 
-const ITEMS_PER_PAGE = 3
+const ITEMS_PER_PAGE = 3;
 
 export default function RecentNewsPage() {
-  const params = useParams()
+  const params = useParams<{ page?: string }>(); // Define the type of params
   const pageNumber = Math.max(1, 
     Math.min(
-      Number(params.page) || 1,
+      Number(params?.page) || 1,
       Math.ceil(recentNews.length / ITEMS_PER_PAGE)
     )
-  )
+  );
   
-  const totalPages = Math.ceil(recentNews.length / ITEMS_PER_PAGE)
-  const startIndex = (pageNumber - 1) * ITEMS_PER_PAGE
-  const currentNews = recentNews.slice(startIndex, startIndex + ITEMS_PER_PAGE)
+  const totalPages = Math.ceil(recentNews.length / ITEMS_PER_PAGE);
+  const startIndex = (pageNumber - 1) * ITEMS_PER_PAGE;
+  const currentNews = recentNews.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   return (
     <PageLayout
@@ -95,5 +95,5 @@ export default function RecentNewsPage() {
         </div>
       }
     />
-  )
+  );
 }

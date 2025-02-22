@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import PageLayout from "@/app/components/PageLayout"
-import Pagination from "@/app/components/Pagination"
-import { CalendarIcon, BriefcaseIcon, CheckCircleIcon } from "lucide-react"
-import { useParams } from "next/navigation"
+import PageLayout from "@/app/components/PageLayout";
+import Pagination from "@/app/components/Pagination";
+import { CalendarIcon, BriefcaseIcon, CheckCircleIcon } from "lucide-react";
+import { useParams } from "next/navigation";
 
 const appointments = [
   {
@@ -118,18 +118,18 @@ const appointments = [
   },
 ];
 
-const ITEMS_PER_PAGE = 3
+const ITEMS_PER_PAGE = 3;
 
 export default function AcademicAppointments() {
-  const params = useParams()
+  const params = useParams<{ page?: string }>(); // Define the type of params
   const page = Math.max(
     1,
-    Math.min(Number(params.page) || 1, Math.ceil(appointments.length / ITEMS_PER_PAGE))
-  )
+    Math.min(Number(params?.page) || 1, Math.ceil(appointments.length / ITEMS_PER_PAGE))
+  );
 
-  const totalPages = Math.ceil(appointments.length / ITEMS_PER_PAGE)
-  const startIndex = (page - 1) * ITEMS_PER_PAGE
-  const currentAppointments = appointments.slice(startIndex, startIndex + ITEMS_PER_PAGE)
+  const totalPages = Math.ceil(appointments.length / ITEMS_PER_PAGE);
+  const startIndex = (page - 1) * ITEMS_PER_PAGE;
+  const currentAppointments = appointments.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   return (
     <PageLayout
@@ -165,5 +165,5 @@ export default function AcademicAppointments() {
         </div>
       }
     />
-  )
+  );
 }

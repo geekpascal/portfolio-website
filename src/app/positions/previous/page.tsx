@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import PageLayout from "@/app/components/PageLayout"
-import Pagination from "@/app/components/Pagination"
-import { CalendarIcon, BriefcaseIcon, CheckCircleIcon, MapPinIcon } from "lucide-react"
+import PageLayout from "@/app/components/PageLayout";
+import Pagination from "@/app/components/Pagination";
+import { CalendarIcon, BriefcaseIcon, CheckCircleIcon, MapPinIcon } from "lucide-react";
 
 const positions = [
   {
@@ -115,21 +115,15 @@ const positions = [
   }
 ];
 
-const ITEMS_PER_PAGE = 2
+const ITEMS_PER_PAGE = 2;
 
-export default function PreviousPositions({ params }: { params: { page: string } }) {
-  const page = Number.parseInt(params.page) || 1
-  const totalPages = Math.ceil(positions.length / ITEMS_PER_PAGE)
-  const startIndex = (page - 1) * ITEMS_PER_PAGE
-  const endIndex = startIndex + ITEMS_PER_PAGE
-  const currentPositions = positions.slice(startIndex, endIndex)
-
+export default function PreviousPositions() {
   return (
     <PageLayout
       title="Previous Positions"
       content={
         <div className="space-y-8">
-          {currentPositions.map((position, index) => (
+          {positions.slice(0, ITEMS_PER_PAGE).map((position, index) => (
             <div
               key={index}
               className="bg-white shadow-lg rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-xl border border-gray-200"
@@ -160,9 +154,13 @@ export default function PreviousPositions({ params }: { params: { page: string }
               </ul>
             </div>
           ))}
-          <Pagination currentPage={page} totalPages={totalPages} basePath="/positions/previous" />
+          <Pagination
+            currentPage={1}
+            totalPages={Math.ceil(positions.length / ITEMS_PER_PAGE)}
+            basePath="/positions/previous"
+          />
         </div>
       }
     />
-  )
+  );
 }

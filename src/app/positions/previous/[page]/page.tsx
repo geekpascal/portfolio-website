@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import PageLayout from "@/app/components/PageLayout"
-import Pagination from "@/app/components/Pagination"
-import { CalendarIcon, BriefcaseIcon, CheckCircleIcon, MapPinIcon } from "lucide-react"
-import { useParams } from "next/navigation"
+import PageLayout from "@/app/components/PageLayout";
+import Pagination from "@/app/components/Pagination";
+import { CalendarIcon, BriefcaseIcon, CheckCircleIcon, MapPinIcon } from "lucide-react";
+import { useParams } from "next/navigation";
 
 const positions = [
   {
@@ -116,18 +116,18 @@ const positions = [
   }
 ];
 
-const ITEMS_PER_PAGE = 2
+const ITEMS_PER_PAGE = 2;
 
 export default function PreviousPositions() {
-  const params = useParams()
+  const params = useParams<{ page?: string }>(); // Define the type of params
   const pageNumber = Math.max(
     1,
-    Math.min(Number(params.page) || 1, Math.ceil(positions.length / ITEMS_PER_PAGE))
-  )
-  
-  const totalPages = Math.ceil(positions.length / ITEMS_PER_PAGE)
-  const startIndex = (pageNumber - 1) * ITEMS_PER_PAGE
-  const currentPositions = positions.slice(startIndex, startIndex + ITEMS_PER_PAGE)
+    Math.min(Number(params?.page) || 1, Math.ceil(positions.length / ITEMS_PER_PAGE))
+  );
+
+  const totalPages = Math.ceil(positions.length / ITEMS_PER_PAGE);
+  const startIndex = (pageNumber - 1) * ITEMS_PER_PAGE;
+  const currentPositions = positions.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   return (
     <PageLayout
@@ -169,7 +169,5 @@ export default function PreviousPositions() {
         </div>
       }
     />
-  )
+  );
 }
-
-
